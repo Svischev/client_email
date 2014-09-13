@@ -1,0 +1,8 @@
+<h3>Ваша учетная запись</h3>
+<%= form_tag(welcome_show_all_emails_path) do %>
+  <%= email_field_tag('email') %>
+  <br />
+  <%= password_field_tag('password') %>
+  <br />
+  <%= submit_tag "Войти", class: 'btn btn-info' %>
+<% end %>
