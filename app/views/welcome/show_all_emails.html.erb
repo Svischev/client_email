@@ -1,1 +1,16 @@
 <h3>Содержимое ящика</h3>
+
+<%= @mail_ids.each do |message_id| %>
+	<!--
+  <% msg = @imap.fetch(message_id, "(UID RFC822.SIZE ENVELOPE BODY[TEXT])")[0].attr["BODY[TEXT]"] %>
+  Текст:<br /><%=  %><br /><br />
+  -->
+  <% msg = @imap.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"] %>
+  От:<%= "#{msg.from[0].name} [#{msg.from[0].host}]" %><br />
+  Тема:<%= msg.subject %><br />
+  <%= msg %><br /><br />
+  <% #msg = @imap.fetch(message_id, "(UID RFC822.SIZE ENVELOPE BODY[TEXT])")[0].attr["BODY[TEXT]"] %>
+  <% msg = @imap.fetch(message_id, "RFC822")[0].attr["RFC822"] %>
+  <%= msg %><br /><br />
+  <br />
+<% end %>
